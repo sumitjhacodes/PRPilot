@@ -1,13 +1,24 @@
 {
-  "name": "AutoPR",
+  "name": "prpilot",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "PRPilot monorepo — web app and API",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "pnpm run --parallel --filter web --filter server dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:server": "pnpm --filter server dev",
+    "build": "pnpm run --recursive --filter web --filter server build",
+    "build:web": "pnpm --filter web build",
+    "build:server": "pnpm --filter server build",
+    "start:web": "pnpm --filter web start",
+    "start:server": "pnpm --filter server start",
+    "lint": "pnpm --filter web lint",
+    "typecheck": "pnpm --filter server typecheck",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "engines": {
+    "node": ">=20"
+  },
   "packageManager": "pnpm@10.20.0"
 }

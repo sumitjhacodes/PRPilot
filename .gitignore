@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+
+# Next.js
+.next/
+out/
+
+# Build / output
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Logs & debug
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+pnpm-debug.log*
+
+# Caches & tooling
+.cache/
+.turbo/
+.vercel/
+*.local
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE / editor (keep shared workspace settings if you want — uncomment to ignore all)
+# .vscode/
+.idea/
+*.swp
+*.swo
+
+# Test / temp
+tmp/
+temp/
+*.tmp

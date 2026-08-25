@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: prpilot-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: prpilot
+      POSTGRES_PASSWORD: prpilot
+      POSTGRES_DB: prpilot
+    ports:
+      - "5432:5432"
+    volumes:
+      - autopr_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  autopr_postgres_data:
