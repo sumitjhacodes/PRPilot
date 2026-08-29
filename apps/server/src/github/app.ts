@@ -1,4 +1,5 @@
 import { App } from "@octokit/app";
+import { Octokit } from "@octokit/rest";
 
 import { env } from "../config/env.js";
 
@@ -17,6 +18,7 @@ export function getGithubApp(): App {
     githubApp = new App({
       appId: env.GITHUB_APP_ID,
       privateKey,
+      Octokit,
     });
   }
 
