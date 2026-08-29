@@ -6,6 +6,10 @@ import githubRoutes from "./routes/github.routes.js";
 const app = express();
 
 app.use(cors());
+app.use(
+  "/api/github/webhook",
+  express.raw({ type: "application/json" }),
+);
 app.use(express.json());
 
 app.get("/health", (_req, res) => {
