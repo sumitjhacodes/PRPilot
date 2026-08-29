@@ -1,16 +1,22 @@
 import { Request, Response } from "express";
 
+import { env } from "../config/env.js";
 import { getRepository } from "../services/github.service.js";
 
 export async function getRepositoryController(
   req: Request,
   res: Response,
 ) {
-  const installationId = Number(
-    process.env.GITHUB_INSTALLATION_ID,
-  );
+  const installationId = env.GITHUB_INSTALLATION_ID;
 
-  const { owner, repo } = req.params;
+  const owner = req.params.owner;
+  const repo = req.params.repo;
+
+  if (typeof owner !== "string" || typeof repo !== "string") {
+    return res.status(400).json({
+      message: "owner and repo are required",
+    });
+  }
 
   if (!installationId) {
     return res.status(500).json({
