@@ -4,10 +4,8 @@ import { getGithubApp } from "./app.js";
 
 export async function getInstallationClient(
   installationId: number,
-) {
-  const octokit = await getGithubApp().getInstallationOctokit(
+): Promise<Octokit> {
+  return getGithubApp().getInstallationOctokit(
     installationId,
-  );
-
-  return octokit as Octokit;
+  ) as Promise<Octokit>;
 }
