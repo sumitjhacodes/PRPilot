@@ -2,9 +2,23 @@ import { App } from "@octokit/app";
 
 import { env } from "../config/env.js";
 
-const privateKey = env.GITHUB_PRIVATE_KEY.replace(/\\n/g, "\n");
+let githubApp: App | undefined;
 
-export const githubApp = new App({
-  appId: env.GITHUB_APP_ID,
-  privateKey,
-});
+export function getGithubApp(): App {
+  if (!env.GITHUB_APP_ID || !env.GITHUB_PRIVATE_KEY) {
+    throw new Error(
+      "GitHub App is not configured. Set GITHUB_APP_ID and GITHUB_PRIVATE_KEY in .env",
+    );
+  }
+
+  if (!githubApp) {
+    const privateKey = env.GITHUB_PRIVATE_KEY.replace(/\\n/g, "\n");
+
+    githubApp = new App({
+      appId: env.GITHUB_APP_ID,
+      privateKey,
+    });
+  }
+
+  return githubApp;
+}

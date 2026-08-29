@@ -1,11 +1,11 @@
 import { Octokit } from "@octokit/rest";
 
-import { githubApp } from "./app.js";
+import { getGithubApp } from "./app.js";
 
 export async function getInstallationClient(
   installationId: number,
 ) {
-  const octokit = await githubApp.getInstallationOctokit(
+  const octokit = await getGithubApp().getInstallationOctokit(
     installationId,
   );
 
