@@ -24,16 +24,23 @@ export async function getRepositoryController(
     });
   }
 
-  const repository = await getRepository(
-    installationId,
-    owner,
-    repo,
-  );
+  try {
+    const repository = await getRepository(
+      installationId,
+      owner,
+      repo,
+    );
 
-  return res.json({
-    id: repository.id,
-    name: repository.name,
-    fullName: repository.full_name,
-    private: repository.private,
-  });
+    return res.json({
+      id: repository.id,
+      name: repository.name,
+      fullName: repository.full_name,
+      private: repository.private,
+    });
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "Failed to fetch repository";
+
+    return res.status(500).json({ message });
+  }
 }
